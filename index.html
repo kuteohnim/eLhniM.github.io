@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>AutumnVN</title>
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Đỗ Văn Hoài Tuân (AutumnVN)">
+  <meta name="description" content="average 6-digit osu! player">
+  <!-- Open Graph / Facebook -->
+  <meta name="theme-color" content="#727FFF">
+  <meta property="og:site_name" content="AutumnVN">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://autumnvn.me/">
+  <meta property="og:title" content="Đỗ Văn Hoài Tuân (AutumnVN)">
+  <meta property="og:description" content="average 6-digit osu! player">
+  <meta property="og:image" content="https://i.imgur.com/CR6N18C.jpg">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://autumnvn.me/">
+  <meta property="twitter:title" content="Đỗ Văn Hoài Tuân (AutumnVN)">
+  <meta property="twitter:description" content="average 6-digit osu! player">
+  <meta property="twitter:image" content="https://autumnvn.me/blog/ShiinaMahiru/top_image.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/magic-grid/dist/magic-grid.min.js"></script>
+  <link rel="stylesheet" href="index.css">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/77253698?v=4" type="image/png">
+</head>
+
+<body>
+  <script>function playAudio(audio_element) {
+      var x = document.getElementById(audio_element);
+      x.play();
+    }</script>
+  <script src="cursor.js"></script>
+  <script type="module">var cursor = new osuCursor();</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <div id="loading">
+    <div id="spinner"></div>
+  </div>
+  <div id="profile">
+    <div id="profile_img" style="background: url(https://avatars.githubusercontent.com/u/77253698?v=4) center;"></div>
+    <div id="username"><span style="display:block;">Đỗ Văn Hoài Tuân</span><a
+        href="https://github.com/AutumnVN">@AutumnVN</a></div>
+    <div id="userbio" style="display: block;">average 6-digit osu! player</div>
+    <div id="about">
+      <span style="display:none;"><i class="fas fa-users"></i> &nbsp; null</span>
+      <span style="display:block;"><i class="fas fa-envelope"></i> &nbsp; htuan03@gmail.com</span>
+      <span style="display:none;"><i class="fas fa-link"></i> &nbsp; <a href="null">null</a></span>
+      <span style="display:block;"><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp; Vietnam</span>
+      <span style="display:none;"><i class="fas fa-user-tie"></i> &nbsp;&nbsp; Student</span>
+      <div class="socials">
+        <span style="display:block !important;"><a href="https://www.facebook.com/dvht0" target="_blank"
+            class="socials"><i class="fab fa-facebook"></i> Đỗ Văn Hoài Tuân</a></span>
+        <span style="display:block !important;"><a href="https://www.youtube.com/channel/UC4G_Vf_usl4MHnyCTidbGmA"
+            target="_blank" class="socials"><i class="fab fa-youtube"></i> AutumnVN</a></span>
+        <span style="display:block !important;"><a href="https://steamcommunity.com/id/AutumnVN/" target="_blank"
+            class="socials"><i class="fab fa-steam"></i> AutumnVN</a></span>
+        <span style="display:block !important;"><a href="https://discord.gg/TcVUMhXreV" target="_blank"
+            class="socials"><i class="fab fa-discord"></i> Discord</a></span>
+      </div>
+    </div>
+  </div>
+  
+  <div id="display">
+    <div id="header">
+      <a href="https://autumnvn.me/727"><img src="https://discord.c99.nl/widget/theme-2/393694671383166998.png" /></a>
+    </div>
+    <div id="wysi">
+      <audio id="WYSI727" src="wysi.ogg"></audio><button class="btn 727" onclick="playAudio('WYSI727')"
+        type="button">727</button>
+    </div>
+    <div id="header">
+      <a href="https://osu.ppy.sh/users/AutumnVN"><img class="osu"
+          src="https://osu-stats-signature.vercel.app/card?user=AutumnVN&mode=std&lang=en&animation=true" /></a>
+    </div>
+
+    <div id="youtube">
+      <h1>Recent Video</h1>
+      <iframe class="latestVideoEmbed" vnum='0' cid="UC4G_Vf_usl4MHnyCTidbGmA" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <script>
+      var reqURL = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent("https://www.youtube.com/feeds/videos.xml?channel_id=");
+
+      function loadVideo(iframe) {
+        $.getJSON(reqURL + iframe.getAttribute('cid'),
+          function (data) {
+            var videoNumber = (iframe.getAttribute('vnum') ? Number(iframe.getAttribute('vnum')) : 0);
+            console.log(videoNumber);
+            var link = data.items[videoNumber].link;
+            var title = data.items[videoNumber].title;
+            id = link.substr(link.indexOf("=") + 1);
+            iframe.setAttribute("src", "https://youtube.com/embed/" + id + "?controls=1&autoplay=1");
+            iframe.parentElement.querySelector("#video-title").innerText = title;
+          }
+        );
+      }
+
+      var iframes = document.getElementsByClassName('latestVideoEmbed');
+      for (var i = 0, len = iframes.length; i < len; i++) {
+        loadVideo(iframes[i]);
+      }
+    </script>
+    <div id="work">
+      <center>
+        <h1>My repository</h1>
+      </center>
+      <div class="projects" id="work_section">
+        <a href="https://github.com/AutumnVN/discordcss" target="_blank">
+          <section>
+            <div class="section_title">discordcss</div>
+            <div class="about_section">
+              <span style="display:none;">undefined</span>
+            </div>
+            <div class="bottom_section">
+              <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; CSS</span>
+              <span><i class="fas fa-star"></i>&nbsp; 0</span>
+              <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+            </div>
+          </section>
+        </a>
+        <a href="https://github.com/AutumnVN/chinosu" target="_blank">
+          <section>
+            <div class="section_title">chinosu</div>
+            <div class="about_section">
+              <span style="display:none;">undefined</span>
+            </div>
+            <div class="bottom_section">
+              <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Javascript</span>
+              <span><i class="fas fa-star"></i>&nbsp; 0</span>
+              <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+            </div>
+          </section>
+        </a>
+        <a href="https://github.com/AutumnVN/DiscordRPC" target="_blank">
+          <section>
+            <div class="section_title">DiscordRPC</div>
+            <div class="about_section">
+              <span style="display:block;">Create custom Rich Presence for any applications/games don't have RPC without modifying them.</span>
+            </div>
+            <div class="bottom_section">
+              <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Python</span>
+              <span><i class="fas fa-star"></i>&nbsp; 0</span>
+              <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+            </div>
+          </section>
+        </a>
+        <a href="https://github.com/AutumnVN/AutumnVN" target="_blank">
+          <section>
+            <div class="section_title">AutumnVN</div>
+            <div class="about_section">
+              <span style="display:block;">OwO, what is this? ...</span>
+            </div>
+            <div class="bottom_section">
+              <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Python</span>
+              <span><i class="fas fa-star"></i>&nbsp; 0</span>
+              <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+            </div>
+          </section>
+        </a>
+        <a href="https://github.com/AutumnVN/autumnvn.github.io" target="_blank">
+          <section>
+            <div class="section_title">autumnvn.github.io</div>
+            <div class="about_section">
+              <span style="display:none;">undefined</span>
+            </div>
+            <div class="bottom_section">
+              <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; CSS</span>
+              <span><i class="fas fa-star"></i>&nbsp; 0</span>
+              <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+            </div>
+          </section>
+        </a>
+        <a href="https://github.com/AutumnVN/stardewvalley-saves" target="_blank">
+          <section>
+            <div class="section_title">stardewvalley-saves</div>
+            <div class="about_section">
+              <span style="display:none;">undefined</span>
+            </div>
+            <div class="bottom_section">
+              <span style="display:none;"><i class="fas fa-code"></i>&nbsp; null</span>
+              <span><i class="fas fa-star"></i>&nbsp; 0</span>
+              <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+            </div>
+          </section>
+        </a>
+      </div>
+      <div id="forks" style="display: block;">
+        <center>
+          <h1> Forks</h1>
+        </center>
+        <div class="projects" id="forks_section">
+          <a href="https://github.com/AutumnVN/AxolotlClient-mod" target="_blank">
+            <section>
+              <div class="section_title">AxolotlClient-mod</div>
+              <div class="about_section">
+                <span style="display:none;">undefined</span>
+              </div>
+              <div class="bottom_section">
+                <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Java</span>
+                <span><i class="fas fa-star"></i>&nbsp; 0</span>
+                <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+              </div>
+            </section>
+          </a>
+          <a href="https://github.com/AutumnVN/Wynnglance-1.19" target="_blank">
+            <section>
+              <div class="section_title">Wynnglance-1.19</div>
+              <div class="about_section">
+                <span style="display:block;">Item rarity underlays for Wynncraft perfectionists</span>
+              </div>
+              <div class="bottom_section">
+                <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Java</span>
+                <span><i class="fas fa-star"></i>&nbsp; 0</span>
+                <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+              </div>
+            </section>
+          </a>
+          <a href="https://github.com/AutumnVN/AxolotlClient" target="_blank">
+            <section>
+              <div class="section_title">AxolotlClient</div>
+              <div class="about_section">
+                <span style="display:block;">☀ AxolotlClient but with cracked login</span>
+              </div>
+              <div class="bottom_section">
+                <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Javascript</span>
+                <span><i class="fas fa-star"></i>&nbsp; 0</span>
+                <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+              </div>
+            </section>
+          </a>
+        </div>
+      </div>
+      <div id="blog_section">
+        <center>
+          <h1>Blog</h1>
+        </center>
+        <div id="blogs"></div>
+      </div>
+      <div id="footer">
+        <h3>Visitor Count</h3>
+        <img src="https://profile-counter.glitch.me/AutumnVN/count.svg" />
+      </div>
+    </div>
+    <script type="text/javascript">
+      setTimeout(function () {
+        document.getElementById("loading").classList.add("animated");
+        document.getElementById("loading").classList.add("fadeOut");
+        setTimeout(function () {
+          document.getElementById("loading").classList.remove("animated");
+          document.getElementById("loading").classList.remove("fadeOut");
+          document.getElementById("loading").style.display = "none";
+        }, 800);
+      }, 1500);
+      $.getJSON("blog.json", function (blog) {
+        blog = blog || [];
+        if (blog.length == 0) {
+          return (document.getElementById("blog_section").style.display =
+            "none");
+        }
+        for (var i = 0; i < blog.length; i++) {
+          $("#blogs").append(`
+            <a href="./blog/${blog[i].url_title}/" target="_blank">
+                <section>
+                    <img src="./blog/${blog[i].url_title}/${blog[i].top_image}">
+                    <div class="blog_container">
+                        <div class="section_title">${blog[i].title}</div>
+                        <div class="about_section">
+                            ${blog[i].sub_title}
+                        </div>
+                    </div>
+                </section>
+            </a>
+            `);
+        }
+      }).fail(function () {
+        return (document.getElementById("blog_section").style.display = "none");
+      });
+    </script>
+
+    <script>
+      const magicProjectsGrid = new MagicGrid({
+        container: "#work_section",
+        animate: false,
+        gutter: 30, // default gutter size
+        static: true,
+        useMin: false,
+        maxColumns: 2,
+        useTransform: true
+      });
+
+      const magicForksGrid = new MagicGrid({
+        container: "#forks_section",
+        animate: false,
+        gutter: 30, // default gutter size
+        static: true,
+        useMin: false,
+        maxColumns: 2,
+        useTransform: true
+      });
+
+      $("document").ready(() => {
+        magicProjectsGrid.listen();
+        magicForksGrid.listen();
+      });
+    </script>
+
+
+</body>
+
+</html>
